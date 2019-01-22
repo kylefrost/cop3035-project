@@ -1,0 +1,16 @@
+Die0, R, I, F, O, B, X
+Die1, I, F, E, H, E, Y
+Die2, D, I, N, O, W, S
+Die3, U, T, O, K, N, D
+Die4, H, M, S, R, A, O
+Die5, L, U, P, E, T, S
+Die6, A, C, I, T, O, A
+Die7, Y, L, G, K, U, E
+Die8, Qu, B,M, J, O, A
+Die9, E, H, I, S, P, N
+Die10, V, E, T, I, G, N
+Die11, B, A, L, I, Y, T
+Die12, E, Z, A, V, N, D
+Die13, R, A, L, E, S, C
+Die14, U, W, I, L, R, G
+Die15, P, A, C, E, M, D
