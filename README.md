@@ -35,4 +35,10 @@ By Kathryn Cotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
   - Leaderboard
     - Player list with scores
     - Current player indicator
+  - Theme customization
+    - Night/Day Switch
+      - Manual switch
+      - Based on location sunset data
+    - Custom colored board
+      - Person starting/hosting game picks theme?
   - __*TBD*__
