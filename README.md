@@ -1,6 +1,6 @@
-<h1 align="center">Boggle Web</h1>
+<h1 align="center">Woggle</h1>
 <p align="center">A Florida State University COP 3035 Project<br>
-By Kathryn Cotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
+By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
 
 ## Prerequisites
   - Python 3.6+ and Pip
