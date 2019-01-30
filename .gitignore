@@ -108,3 +108,6 @@ venv.bak/
 
 # Secrets
 secrets.py
+
+# macOS Index Files
+.DS_Store

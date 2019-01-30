@@ -1,9 +1,11 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>Boggle Web</title>
+        {% include 'head.html' %}
     </head>
     <body>
-        <h1>Boggle Web</h1>
+        <h1>Woggle</h1>
         <form method="POST">
             {{ form.hidden_tag() }}
             {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
