@@ -1,3 +1,42 @@
 body {
   background-color: #f7f7f7;
 }
+
+#loginPage {
+  text-align: center;
+}
+
+#loginFormContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+
+  #logo {
+    height: auto;
+    width: 30%;
+  }
+
+  input[type=text],
+  input[type=password] {
+    width: 300px;
+    border: 1px solid lightGray;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+
+    &:focus {
+      border: 1px solid darkGray;
+    }
+  }
+
+  input[type=text],
+  input[type=password],
+  input[type=submit] {
+    padding: 10px;
+    margin-top: 5px;
+    -webkit-appearance: none;
+    outline: none;
+    border-radius: 20px;
+  }
+}

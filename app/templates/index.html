@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Boggle Web</title>
+        <title>Woggle</title>
         {% include 'head.html' %}
+        <script type="text/javascript" src="{{ url_for('static', filename='js/index.js') }}"></script>
     </head>
-    <body>
-        <h1>Woggle</h1>
+    <body id="loginPage">
+      <div id="loginFormContainer">
+        <h1><img id="logo" src="{{ url_for('static', filename='img/woggle.png') }}"></h1>
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.name.label }}: {{ form.name() }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
-            {{ form.room.label }}: {{ form.room() }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
+            {{ form.name(placeholder='Name', autocomplete='false') }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
+            {{ form.room(placeholder='Room', autocomplete='false') }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
+            {{ form.password(placeholder='Password', autocomplete='false') }} {% for error in form.password.errors %}{{ error }}{% endfor %}<br>
             {{ form.submit() }}
         </form>
+      </div>
     </body>
 </html>
