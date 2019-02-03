@@ -6,4 +6,4 @@ class LoginForm(FlaskForm):
     name = StringField('Name', validators=[Required()])
     room = StringField('Room', validators=[Required()])
     password = PasswordField('Password', validators=[Required()])
-    submit = SubmitField('Enter Gameroom')
+    submit = SubmitField('Join Game')
