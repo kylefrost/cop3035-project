@@ -1,5 +1,23 @@
+// Font Import
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700,900');
+
+// Import Utilities
+@import 'utlities';
+
+// Import Pages
+@import 'chat';
+
+* {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
 body {
   background-color: #f7f7f7;
+  overflow: hidden;
 }
 
 #loginPage {
@@ -39,4 +57,41 @@ body {
     outline: none;
     border-radius: 20px;
   }
+}
+
+.error {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 12px;
+
+  & .error-label {
+    background-color: $error-background;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    border: 2px solid $error-border;
+  }
+}
+
+#main-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#game {
+  position: relative;
+  display: block;
+  height: 100%;
+  overflow: hidden;
+  background-color: white;
+}
+
+#sidebar {
+  position: relative;
+  float: right;
+  width: 300px;
+  height: 100%;
+  z-index: 200;
 }

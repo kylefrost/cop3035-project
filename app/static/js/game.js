@@ -16,6 +16,13 @@ $(document).ready(function() {
     $('#game').scrollTop($('#game')[0].scrollHeight);
   });
 
+  $('#chat-form').submit(function() {
+    var message = $('#chat-input').val();
+    socket.emit('send_chat', message);
+    $('chat-input').val('');
+    return false;
+  });
+
   $('#text').keypress(function(e) {
     var code = e.keyCode || e.which;
     if (code == 13) {

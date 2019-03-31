@@ -1,0 +1,103 @@
+// main: style.scss
+
+#chat {
+  height: 60%;
+}
+
+#chat-form {
+  position: absolute;
+  width: 100%;
+  height: 5em;
+  padding: 1em;
+  bottom: 0;
+  background-color: $chat-compose-background;
+}
+
+#chat-input {
+  position: relative;
+  height: 100%;
+  width: 80%;
+  padding: 0.5em;
+  border: none;
+  border-radius: 5px 0 0 5px;
+  font-size: $chat-font-size;
+}
+
+#chat-button {
+  position: relative;
+  height: 100%;
+  width: 20%;
+  border: none;
+  border-radius: 0 5px 5px 0;
+  color: white;
+  background-color: $chat-button-background;
+  font-size: $chat-font-size;
+}
+
+#chat-messages-container {
+  position: absolute;
+  width: 100%;
+  padding: 1em;
+  top: 40%;
+  bottom: 5em;
+  border-top: none;
+  overflow: auto;
+  border: 5px solid $chat-container-border;
+}
+
+// Messages List
+
+#chat-messages-list li {
+  position: relative;
+  width: 100%;
+  list-style-type: none;
+  margin-bottom: .5em;
+  clear: both;
+  font-size: $chat-font-size;
+  &.me {
+    float: right;
+    .username {
+      margin-right: 1em;
+    }
+    .msg {
+      color: white;
+      background-color: $chat-me-background;
+    }
+  }
+  &.other {
+    float: left;
+    .username {
+      margin-left: 1em;
+    }
+    .msg {
+      color: black;
+      background-color: $chat-you-background;
+    }
+  }
+  &.server {
+    .msg {
+      margin-left: auto;
+      margin-right: auto;
+      width: 100%;
+      text-align: center;
+      color: #6e6f76;
+      font-size: 13px;
+    }
+  }
+  .username {
+    float: inherit;
+    margin-bottom: 0.2em;
+    font-size: $chat-font-size + 2px;
+    color: $dark-gray;
+  }
+  .msg {
+    width: 80%;
+    padding: 1em;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    float: inherit;
+    clear: both;
+    border-radius: .5em;
+    word-wrap: break-word;
+  }
+}

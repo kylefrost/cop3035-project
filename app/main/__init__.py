@@ -4,6 +4,6 @@ from flask import Blueprint
 main = Blueprint('main', __name__)
 
 # Load page routes and socket events
-from . import routes, events, secrets
+from . import routes, events, secrets#, rooms
 
 k = secrets.Secrets()

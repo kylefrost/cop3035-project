@@ -10,9 +10,9 @@
         <h1><img id="logo" src="{{ url_for('static', filename='img/woggle.png') }}"></h1>
         <form method="POST">
             {{ form.hidden_tag() }}
-            {{ form.name(placeholder='Name', autocomplete='false') }} {% for error in form.name.errors %}{{ error }}{% endfor %}<br>
-            {{ form.room(placeholder='Room', autocomplete='false') }} {% for error in form.room.errors %}{{ error }}{% endfor %}<br>
-            {{ form.password(placeholder='Password', autocomplete='false') }} {% for error in form.password.errors %}{{ error }}{% endfor %}<br>
+            {% for error in form.name.errors %}<div class="error"><span class="error-label">{{ error }}</span></div>{% endfor %} {{ form.name(placeholder='Name', autocomplete='false') }}<br>
+            {% for error in form.room.errors %}<div class="error"><span class="error-label">{{ error }}</span></div>{% endfor %} {{ form.room(placeholder='Room', autocomplete='false') }}<br>
+            {% for error in form.password.errors %}<div class="error"><span class="error-label">{{ error }}</span></div>{% endfor %} {{ form.password(placeholder='Password', autocomplete='false') }}<br>
             {{ form.submit() }}
         </form>
       </div>

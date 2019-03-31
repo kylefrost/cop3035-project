@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{{ room }}: Boggle Web</title>
-        {% include 'head.html' %}
-        <script type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
-    </head>
+  <head>
+    <title>{{ room }}: Boggle Web</title>
+      {% include 'head.html' %}
+      <script type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
+  </head>
     <body>
-        <h1>Boggle Web: {{ room }}</h1>
-        <textarea id="game" cols="80" rows="20"></textarea><br><br>
-        <input id="text" size="80" placeholder="Enter your message"><br><br>
-        <a href="#" onclick="leave_room();">Leave</a>
+      <div id="main-container">
+        <div id="sidebar">
+          <div id="leaderboard-container">
+            <table id="leaderboard-table"></table>
+          </div>
+          <div id="chat">
+            <div id="chat-messages-container">
+              <ul id="chat-messages-list"></ul>
+            </div>
+            <form id="chat-form">
+              <input id="chat-input" autocomplete="off" placeholder="Message" /><button id="chat-button">Send</button>
+            </form>
+          </div>
+        </div>
+        <div id="game">
+        </div>
+      </div>
     </body>
 </html>
