@@ -19,7 +19,7 @@ By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
 # Plan
 ## Core
 ### Rooms
-  - Maximum and minimum number of players
+  - Maximum 8 and minimum 2 of players (if not vs. computer)
   - Password protected rooms
   - Settings (play to N, etc)
   - Server Notifications
@@ -40,7 +40,7 @@ By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
     - Add words to "box" as players find them
   - Only allow 3+ letter words
   - Check against dictionary
-    - Do this after time is out and eliminate incorrect words, or do during and disallow incorrect words?
+    - Everytime someone submits word, check
   - Show everyone's word lists after each round to show scoring
 ### Chat
   - Chat system
