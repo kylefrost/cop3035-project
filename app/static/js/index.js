@@ -1,5 +1,5 @@
 $(document).ready(function() {
   $('#name').keyup(function() {
-    console.log($('#room').val())
+    //console.log($('#room').val())
   });
 });

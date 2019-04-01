@@ -20,7 +20,6 @@ def index():
 
 @main.route('/game')
 def game():
-    print(rooms.active_rooms)
     name = session.get('name', '')
     room = session.get('room', '')
     if name == '' or room == '':

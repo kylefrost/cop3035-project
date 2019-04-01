@@ -3,6 +3,7 @@ class Room():
         self.room_name = name
         self.room_password = password
         self.room_host = host
+        self.users = []
 
     def get_room_name(self):
         return self.room_name
@@ -12,5 +13,8 @@ class Room():
 
     def get_room_host(self):
         return self.room_host
+
+    def get_room_users(self):
+        return self.users
 
 active_rooms = []

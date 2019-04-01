@@ -1,0 +1,700 @@
+// main: style.scss
+
+/************************************************
+               Wobble Animation
+************************************************/
+
+.wobble {
+  animation-name: wobble;
+  -webkit-animation-name: wobble;
+  -moz-animation-name: wobble;
+
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(4deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
+}
+
+@-webkit-keyframes wobble {
+  0% {
+    -webkit-transform: rotate(-4deg);
+  }
+  50% {
+    -webkit-transform: rotate(4deg);
+  }
+  100% {
+    -webkit-transform: rotate(-4deg);
+  }
+}
+
+@-moz-keyframes wobble {
+  0% {
+    -moz-transform: rotate(-4deg);
+  }
+  50% {
+    -moz-transform: rotate(4deg);
+  }
+  100% {
+    -moz-transform: rotate(-4deg);
+  }
+}
+
+/************************************************
+              Fade in Animation
+************************************************/
+
+.fadeIn {
+  animation-name: fadeIn;
+  -webkit-animation-name: fadeIn;
+  -moz-animation-name: fadeIn;
+
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+
+  visibility: visible !important;
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: scale(0);
+    opacity: 0.0;
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  80% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0.0;
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+  }
+  80% {
+    -webkit-transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    -moz-transform: scale(0, 0);
+    opacity: 0.0;
+  }
+  60% {
+    -moz-transform: scale(1.1, 1.1);
+  }
+  80% {
+    -moz-transform: scale(0.9, 0.9);
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+/************************************************
+             Slide in from Right
+************************************************/
+
+.slide-in-right {
+  animation-name: slide-in-right;
+  -webkit-animation-name: slide-in-right;
+  -moz-animation-name: slide-in-right;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+
+  visibility: visible !important;
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(-350%);
+  }
+  50% {
+    transform: translateX(8%);
+  }
+  65% {
+    transform: translateX(-4%);
+  }
+  80% {
+    transform: translateX(4%);
+  }
+  95% {
+    transform: translateX(-2%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@-webkit-keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(-350%);
+  }
+  50% {
+    -webkit-transform: translateX(8%);
+  }
+  65% {
+    -webkit-transform: translateX(-4%);
+  }
+  80% {
+    -webkit-transform: translateX(4%);
+  }
+  95% {
+    -webkit-transform: translateX(-2%);
+  }
+  100% {
+    -webkit-transform: translateX(0%);
+  }
+}
+
+@-moz-keyframes slide-in-right {
+  0% {
+    -moz-transform: translateX(-350%);
+  }
+  50% {
+    -moz-transform: translateX(8%);
+  }
+  65% {
+    -moz-transform: translateX(-4%);
+  }
+  80% {
+    -moz-transform: translateX(4%);
+  }
+  95% {
+    -moz-transform: translateX(-2%);
+  }
+  100% {
+    -moz-transform: translateX(0%);
+  }
+}
+
+/************************************************
+              Slide out to left
+************************************************/
+
+.slide-out-left {
+  animation-name: slide-out-left;
+  -webkit-animation-name: slide-out-left;
+  -moz-animation-name: slide-out-left;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+
+}
+
+@keyframes slide-out-left {
+  0% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  65% {
+    transform: translateX(-20%);
+  }
+  80% {
+    transform: translateX(-30%);
+  }
+  95% {
+    transform: translateX(-40%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@-webkit-keyframes slide-out-left {
+  0% {
+    -webkit-transform: translateX(0%);
+  }
+  50% {
+    -webkit-transform: translateX(-10%);
+  }
+  65% {
+    -webkit-transform: translateX(-20%);
+  }
+  80% {
+    -webkit-transform: translateX(-30%);
+  }
+  95% {
+    -webkit-transform: translateX(-40%);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+  }
+}
+
+@-moz-keyframes slide-out-left {
+  0% {
+    -moz-transform: translateX(0%);
+  }
+  50% {
+    -moz-transform: translateX(-10%);
+  }
+  65% {
+    -moz-transform: translateX(-20%);
+  }
+  80% {
+    -moz-transform: translateX(-30%);
+  }
+  95% {
+    -moz-transform: translateX(-40%);
+  }
+  100% {
+    -moz-transform: translateX(-50%);
+  }
+}
+
+/************************************************
+     Prepare Black Card for Voting Phase
+************************************************/
+
+.move-black-for-voting {
+
+  animation-name: move-black-for-voting;
+  -webkit-animation-name: move-black-for-voting;
+  -moz-animation-name: move-black-for-voting;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+
+  transform: translateX(-100%) translateY(-45%) scale(0.5);
+  -webkit-transform: translateX(-100%) translateY(-45%) scale(0.5);
+
+  margin-left: 0;
+
+  visibility: visible !important;
+
+}
+
+@keyframes move-black-for-voting {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: translateX(-103%) translateY(-48%) scale(0.49);
+  }
+  65% {
+    transform: translateX(-98%) translateY(-42%) scale(0.51);
+  }
+  80% {
+    transform: translateX(-101%) translateY(-46%) scale(0.495);
+  }
+  95% {
+    transform: translateX(-99%) translateY(-44%) scale(0.505);
+  }
+  100% {
+    transform: translateX(-100%) translateY(-45%) scale(0.5);
+  }
+}
+
+@-webkit-keyframes move-black-for-voting {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: translateX(-103%) translateY(-48%) scale(0.49);
+  }
+  65% {
+    -webkit-transform: translateX(-98%) translateY(-42%) scale(0.51);
+  }
+  80% {
+    -webkit-transform: translateX(-101%) translateY(-46%) scale(0.495);
+  }
+  95% {
+    -webkit-transform: translateX(-99%) translateY(-44%) scale(0.505);
+  }
+  100% {
+    -webkit-transform: translateX(-100%) translateY(-45%) scale(0.5);
+  }
+}
+
+@-moz-keyframes move-black-for-voting {
+  0% {
+    -moz-transform: scale(1, 1);
+  }
+  50% {
+    -moz-transform: translateX(-103%) translateY(-48%) scale(0.49, 0.49);
+  }
+  65% {
+    -moz-transform: translateX(-98%) translateY(-42%) scale(0.51, 0.51);
+  }
+  80% {
+    -moz-transform: translateX(-101%) translateY(-46%) scale(0.495, 0.495);
+  }
+  95% {
+    -moz-transform: translateX(-99%) translateY(-44%) scale(0.505, 0.505);
+  }
+  100% {
+    -moz-transform: translateX(-100%) translateY(-45%) scale(0.5, 0.5);
+  }
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .move-black-for-voting {
+
+    animation-name: move-black-for-voting;
+    -webkit-animation-name: move-black-for-voting;
+    -moz-animation-name: move-black-for-voting;
+
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    -moz-animation-duration: 1s;
+
+    animation-timing-function: ease-in-out;
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+
+    transform: translateX(-50%) translateY(-29%) scale(0.5);
+    -webkit-transform: translateX(-50%) translateY(-29%) scale(0.5);
+  }
+
+  @keyframes move-black-for-voting {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: translateX(-53%) translateY(-32%) scale(0.49);
+    }
+    65% {
+      transform: translateX(-48%) translateY(-27%) scale(0.51);
+    }
+    80% {
+      transform: translateX(-51%) translateY(-30%) scale(0.495);
+    }
+    95% {
+      transform: translateX(-49%) translateY(-28%) scale(0.505);
+    }
+    100% {
+      transform: translateX(-50%) translateY(-29%) scale(0.5);
+    }
+  }
+
+  @-webkit-keyframes move-black-for-voting {
+    0% {
+      -webkit-transform: scale(1);
+    }
+    50% {
+      -webkit-transform: translateX(-53%) translateY(-32%) scale(0.49);
+    }
+    65% {
+      -webkit-transform: translateX(-48%) translateY(-27%) scale(0.51);
+    }
+    80% {
+      -webkit-transform: translateX(-51%) translateY(-30%) scale(0.495);
+    }
+    95% {
+      -webkit-transform: translateX(-49%) translateY(-28%) scale(0.505);
+    }
+    100% {
+      -webkit-transform: translateX(-50%) translateY(-29%) scale(0.5);
+    }
+  }
+}
+
+@media only screen and (min-width : 1224px) {
+  animation-name: move-black-for-voting;
+  -webkit-animation-name: move-black-for-voting;
+  -moz-animation-name: move-black-for-voting;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+
+  transform: translateX(-100%) translateY(-45%) scale(0.5);
+  -webkit-transform: translateX(-100%) translateY(-45%) scale(0.5);
+
+  @keyframes move-black-for-voting {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: translateX(-103%) translateY(-48%) scale(0.49);
+    }
+    65% {
+      transform: translateX(-98%) translateY(-42%) scale(0.51);
+    }
+    80% {
+      transform: translateX(-101%) translateY(-46%) scale(0.495);
+    }
+    95% {
+      transform: translateX(-99%) translateY(-44%) scale(0.505);
+    }
+    100% {
+      transform: translateX(-100%) translateY(-45%) scale(0.5);
+    }
+  }
+
+  @-webkit-keyframes move-black-for-voting {
+    0% {
+      -webkit-transform: scale(1);
+    }
+    50% {
+      -webkit-transform: translateX(-103%) translateY(-48%) scale(0.49);
+    }
+    65% {
+      -webkit-transform: translateX(-98%) translateY(-42%) scale(0.51);
+    }
+    80% {
+      -webkit-transform: translateX(-101%) translateY(-46%) scale(0.495);
+    }
+    95% {
+      -webkit-transform: translateX(-99%) translateY(-44%) scale(0.505);
+    }
+    100% {
+      -webkit-transform: translateX(-100%) translateY(-45%) scale(0.5);
+    }
+  }
+}
+
+/************************************************
+            Slide Up From Bottom
+************************************************/
+
+.slide-up-from-bottom{
+  animation-name: slide-up-from-bottom;
+  -webkit-animation-name: slide-up-from-bottom;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+
+  animation-timing-function: ease;
+  -webkit-animation-timing-function: ease;
+
+  visibility: visible !important;
+}
+
+@keyframes slide-up-from-bottom {
+  0% {
+    transform: translateY(100%);
+  }
+  50%{
+    transform: translateY(-8%);
+  }
+  65%{
+    transform: translateY(4%);
+  }
+  80%{
+    transform: translateY(-4%);
+  }
+  95%{
+    transform: translateY(2%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+
+@-webkit-keyframes slide-up-from-bottom {
+  0% {
+    -webkit-transform: translateY(100%);
+  }
+  50%{
+    -webkit-transform: translateY(-8%);
+  }
+  65%{
+    -webkit-transform: translateY(4%);
+  }
+  80%{
+    -webkit-transform: translateY(-4%);
+  }
+  95%{
+    -webkit-transform: translateY(2%);
+  }
+  100% {
+    -webkit-transform: translateY(0%);
+  }
+}
+
+/************************************************
+ Prepare Black Card for Voting Phase (No Sidebar)
+************************************************/
+
+/*********         Deprecated          *********/
+
+.move-black-for-voting-no-sidebar {
+  animation-name: move-black-for-voting-no-sidebar;
+  -webkit-animation-name: move-black-for-voting-no-sidebar;
+  -moz-animation-name: move-black-for-voting-no-sidebar;
+
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+
+  animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-timing-function: ease-in-out;
+
+  transform: translateX(-100%) scale(0.5);
+  -webkit-transform: translateX(-100%) translateY(-45%) scale(0.5);
+  -moz-transform: translateX(-100%) translateY(-45%) scale(0.5, 0.5);
+
+  margin-left: 1.5%;
+
+  visibility: visible !important;
+}
+
+@keyframes move-black-for-voting-no-sidebar {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: translateX(-103%) translateY(-48%) scale(0.49);
+  }
+  65% {
+    transform: translateX(-98%) translateY(-42%) scale(0.51);
+  }
+  80% {
+    transform: translateX(-101%) translateY(-46%) scale(0.495);
+  }
+  95% {
+    transform: translateX(-99%) translateY(-44%) scale(0.505);
+  }
+  100% {
+    transform: translateX(-100%) translateY(-45%) scale(0.5);
+  }
+}
+
+@-webkit-keyframes move-black-for-voting-no-sidebar {
+  0% {
+    -webkit-transform: scale(1);
+  }
+  50% {
+    -webkit-transform: translateX(-103%) translateY(-48%) scale(0.49);
+  }
+  65% {
+    -webkit-transform: translateX(-98%) translateY(-42%) scale(0.51);
+  }
+  80% {
+    -webkit-transform: translateX(-101%) translateY(-46%) scale(0.495);
+  }
+  95% {
+    -webkit-transform: translateX(-99%) translateY(-44%) scale(0.505);
+  }
+  100% {
+    -webkit-transform: translateX(-100%) translateY(-45%) scale(0.5);
+  }
+}
+
+@-moz-keyframes move-black-for-voting-no-sidebar {
+  0% {
+    -moz-transform: scale(1);
+  }
+  50% {
+    -moz-transform: translateX(-103%) translateY(-48%) scale(0.49, 0.49);
+  }
+  65% {
+    -moz-transform: translateX(-98%) translateY(-42%) scale(0.51, 0.51);
+  }
+  80% {
+    -moz-transform: translateX(-101%) translateY(-46%) scale(0.495, 0.495);
+  }
+  95% {
+    -moz-transform: translateX(-99%) translateY(-44%) scale(0.505, 0.505);
+  }
+  100% {
+    -moz-transform: translateX(-100%) translateY(-45%) scale(0.5, 0.5);
+  }
+}
+
+/************************************************
+             Float while hovering
+************************************************/
+
+.floating {
+  animation-name: floating;
+  -webkit-animation-name: floating;
+
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+
+  animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+
+  animation-delay: .2s;
+  -webkit-animation-delay: .2s;
+
+  transform: scale(1);
+  -webkit-transform: scale(1);
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(-6%) scale(1.3);
+  }
+  50% {
+    transform: translateY(2%) scale(1.3);
+  }
+  100% {
+    transform: translateY(-6%) scale(1.3);
+  }
+}
+
+@-webkit-keyframes floating {
+  0% {
+    -webkit-transform: translateY(-6%) scale(1.3);
+  }
+  50% {
+    -webkit-transform: translateY(2%) scale(1.3);
+  }
+  100% {
+    -webkit-transform: translateY(-6%) scale(1.3);
+  }
+}
