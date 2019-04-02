@@ -34,6 +34,8 @@ def send_chat(user, message):
     user = getUser(room, user)
     emit('new_chat', {'user': user.get_user_name(), 'message': message}, room=room.get_room_name(), skip_sid=user.get_user_id())
 
+@socketio.on('start_timer',namespace='/game')
+def start_timer():
     print('Starting game timer.')
     thread = Thread(target=timer, args=(room.get_room_name(),))
     thread.daemon = True
