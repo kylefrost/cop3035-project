@@ -65,6 +65,12 @@ $(document).ready(function() {
     chatContainer.scrollTop = chatContainer.scrollHeight;
   });
 
+  socket.on('update_timer', function(data) {
+    console.log('received data');
+    console.log(data);
+    $('#timer').text(data.timer);
+  });
+
   $('#chat-form').submit(function() {
     var message = $('#chat-input').val();
     socket.emit('send_chat', sessionStorage.getItem('you'), message);

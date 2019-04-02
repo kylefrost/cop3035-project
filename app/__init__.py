@@ -3,7 +3,7 @@ from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 
 # Init Socket.IO
-socketio = SocketIO()
+socketio = SocketIO(async_mode='gevent')
 
 # Init SQLAlchemy
 db = SQLAlchemy()
@@ -22,6 +22,7 @@ def gen_app(debug=False):
     # SQL Alchemy connection string and suppress warnings
     app.config['SQLALCHEMY_DATABASE_URI'] = k.sqlalchemy_database_uri
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = k.sqlalchemy_track_modifications
+    app.config['ENV'] = k.flask_env
 
     # Register page blueprints
     from .main import main as main_blueprint

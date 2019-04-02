@@ -1,7 +1,10 @@
-from flask import session, request
+from flask import session, request, copy_current_request_context
 from flask_socketio import emit, join_room, leave_room
 from .. import socketio
 from . import rooms, users
+
+from time import sleep
+from threading import Thread
 
 def getRoom(name):
     return next((x for x in rooms.active_rooms if x.get_room_name() == name), None)
@@ -15,6 +18,7 @@ def on_connect():
     name = session.get('name')
     user = users.User(name, room.get_room_name(), request.sid)
     room.users.append(user)
+    print("User " + user.get_user_name() + " has connected to room " + room.get_room_name() + ".")
 
 @socketio.on('joined', namespace='/game')
 def joined(message):
@@ -28,8 +32,17 @@ def joined(message):
 def send_chat(user, message):
     room = getRoom(session.get('room'))
     user = getUser(room, user)
-    print(user.get_user_id())
     emit('new_chat', {'user': user.get_user_name(), 'message': message}, room=room.get_room_name(), skip_sid=user.get_user_id())
+
+    print('Starting game timer.')
+    thread = Thread(target=timer, args=(room.get_room_name(),))
+    thread.daemon = True
+    thread.start()
+
+def timer(room, seconds=60):
+    for i in range(seconds):
+        socketio.emit('update_timer', {'timer': i}, room=room, namespace='/game')
+        sleep(1)
 
 @socketio.on('leave', namespace='/game')
 def leave(message):

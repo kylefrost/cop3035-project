@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Boggle Web: {{ room }}</title>
+    <title>Woggle: {{ room }}</title>
       {% include 'head.html' %}
       <script type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
   </head>
@@ -21,6 +21,7 @@
           </div>
         </div>
         <div id="game">
+          <div id="timer">0</div>
         </div>
       </div>
     </body>
