@@ -71,6 +71,11 @@ $(document).ready(function() {
     $('#timer').text(data.timer);
   });
 
+  $('#start-button').click(function() {
+    socket.emit('start_timer', {});
+    console.log('Start button pressed!');
+  });
+
   $('#chat-form').submit(function() {
     var message = $('#chat-input').val();
     socket.emit('send_chat', sessionStorage.getItem('you'), message);
