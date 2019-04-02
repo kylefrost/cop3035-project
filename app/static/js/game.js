@@ -9,6 +9,13 @@ $(document).ready(function() {
     sessionStorage.setItem('you', data.user);
   });
 
+  socket.on('update_leaderboard', function(data){
+    var leaderboard = $('#leaderboard-table');
+    leaderboard.empty();
+    leaderboard.append('<tr><th style="text_align:left;padding-left:30px;" colspan="2">Players</th><th style="text-align:center">Score</th></tr>');
+    console.log(data);
+  });
+
   socket.on('new_chat', function(data) {
     var chatContainer = document.getElementById('chat-messages-container'),
         chatList = $('#chat-messages-list'),

@@ -27,6 +27,11 @@ def joined(message):
     join_room(room.get_room_name())
     emit('set_storage', {'user': user.get_user_name()}, room=user.get_user_id())
     emit('new_chat', {'user': 'SERVER', 'message': user.get_user_name() + ' has joined the room.'}, room=room.get_room_name())
+    users_list = []
+    for u in room.get_room_users():
+        users_list.append([u.get_user_name(), u.get_user_score()])
+    emit('update_leaderboard', {'users': users_list}, room=room.get_room_name())
+    
 
 @socketio.on('send_chat', namespace='/game')
 def send_chat(user, message):
