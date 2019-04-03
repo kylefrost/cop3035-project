@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 from gevent import monkey
 monkey.patch_all()
 from app import gen_app, socketio
