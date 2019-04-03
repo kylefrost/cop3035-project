@@ -1,0 +1,82 @@
+// main: style.scss
+
+// Room Banner
+#room-banner {
+  position: absolute;
+  width: 33%;
+  top: 0;
+  left: 0;
+  padding: 5px 30px 5px 30px;
+  font-size: 35px;
+  color: $orange;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: $gray;
+  &::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: 0;
+    margin: -7px 0px -1.5px 0px;
+    border-top: 30px solid transparent;
+    border-right: 30px solid white;
+    border-bottom: 30px solid transparent;
+    outline: 1px solid transparent;
+  }
+}
+
+#room-banner-image {
+  height: 30px;
+  top: 0;
+  left: 0;
+  margin-right: 20px;
+}
+
+// Leaderboard
+
+#leaderboard-container {
+  height: 40%;
+  padding: 1em;
+  padding-top: .25em;
+  border: 5px solid $gray;
+  border-bottom: none;
+  overflow: auto;
+}
+
+#leaderboard-table {
+  width: 100%;
+  color: $dark-gray;
+  border-collapse: collapse;
+  .p-icon {
+    height: 1em;
+    padding-top: .3em;
+  }
+  td, th {
+    padding: .3em;
+  }
+  th {
+    border-bottom: 1px solid $gray;
+  }
+  th:last-child, tr td:last-child  {
+    border-left: 1px solid $gray;
+  }
+}
+
+.icon-cnt {
+  width: 25px;
+}
+
+.player-name {
+  max-width: 175px;
+  text-align: left;
+  overflow: ellipsis;
+  float: left;
+  left: 0;
+}
+
+.player-score {
+  width: 100px;
+  text-align: center;
+}

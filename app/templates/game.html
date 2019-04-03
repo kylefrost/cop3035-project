@@ -9,12 +9,7 @@
       <div id="main-container">
         <div id="sidebar">
           <div id="leaderboard-container">
-            <table id="leaderboard-table">
-              <tr>
-                <th>Name</th>
-                <th>Score</th>
-              </tr>
-            </table>
+            <table id="leaderboard-table"></table>
           </div>
           <div id="chat">
             <div id="chat-messages-container">
@@ -26,6 +21,10 @@
           </div>
         </div>
         <div id="game">
+          <div id="room-banner">
+            <img src="{{ url_for('static', filename='img/woggle.png') }}" id="room-banner-image"></img>
+            <span id="room-name">{{ room }}</span>
+          </div>
           <div id="timer">0</div>
           <div id="start-button">Start</div>
         </div>

@@ -14,6 +14,10 @@ $(document).ready(function() {
     leaderboard.empty();
     leaderboard.append('<tr><th style="text_align:left;padding-left:30px;" colspan="2">Players</th><th style="text-align:center">Score</th></tr>');
     console.log(data);
+    for (var i = 0; i < data.users.length; i++) {
+      console.log(data.users[i]);
+      leaderboard.append('<tr><td class="icon-cnt"><img class="p-icon" src="head_image.png"></td><td class="player-name">' + data.users[i][0] + '</td><td class="player-score">' + data.users[i][1] + '</td></tr>');
+    }
   });
 
   socket.on('new_chat', function(data) {
@@ -96,4 +100,8 @@ function leave_room() {
     socket.disconnect();
     window.location.href = "{{ url_for('main.index') }}";
   });
+}
+
+window.onbeforeunload = function () {
+  return false;
 }
