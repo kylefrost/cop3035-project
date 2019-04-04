@@ -2,7 +2,7 @@ from flask import session, request, copy_current_request_context
 from flask_socketio import emit, join_room, leave_room
 from .. import socketio
 from . import rooms, users
-
+from random import shuffle
 from time import sleep
 from threading import Thread
 
@@ -43,9 +43,16 @@ def start_timer(data):
     print('Starting game timer.')
     dice = [['R','I','F','O','B','X'],['I','F','E','H','E','Y'],['D','I','N','O','W','S'],['U','T','O','K','N','D'],['H','M','S','R','A','O'],['L','U','P','E','T','S'],['A','C','I','T','O','A'],['Y','L','G','K','U','E'],['Qu','B','M','J','O','A'],['E','H','I','S','P','N'],['V','E','T','I','G','N'],['B','A','L','I','Y','T'],['E','Z','A','V','N','D'],['R','A','L','E','S','C'],['U','W','I','L','R','G'],['P','A','C','E','M','D']]
     room = getRoom(session.get('room'))
+    rolled_die=[]
+    for die in dice:
+        shuffle(die)
+        rolled = die[0]
+        rolled_die.append(rolled)
+    emit("rolled_die", {'dice':rolled_die}, room=room.get_room_name())
     thread = Thread(target=timer, args=(room.get_room_name(),))
     thread.daemon = True
     thread.start()
+
 
 def timer(room, seconds=60):
     for i in range(seconds):
