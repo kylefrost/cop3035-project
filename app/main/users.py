@@ -4,6 +4,7 @@ class User():
         self.room_name = room_name
         self.user_id = socketId
         self.user_score = 0
+        self.word_list = []
 
     def get_user_name(self):
         return self.user_name
@@ -19,3 +20,9 @@ class User():
 
     def add_to_user_score(self, score):
         self.user_score = self.user_score + score
+
+    def get_word_list(self):
+        return self.word_list
+
+    def add_word_to_list(self, new_word):
+        self.word_list.append(new_word)
