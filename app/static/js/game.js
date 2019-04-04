@@ -112,6 +112,7 @@ $(document).ready(function() {
 
   $('#start-game-button').click(function() {
     socket.emit('start_timer', {});
+    $("#start-game-button").remove();
     console.log('Start button pressed!');
   });
 
