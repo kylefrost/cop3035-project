@@ -8,7 +8,7 @@ var tiles = gameBoard.querySelectorAll('button');
 var clearAll = document.getElementById('clear-all');
 
 var indexTiles = function () {
-  for (var i=0; i < tiles.length; i++ ) {
+  for (var i=0; i < tiles.length; i++) {
     tiles[i].attributes.index = i;
   }
 };

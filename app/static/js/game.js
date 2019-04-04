@@ -1,5 +1,18 @@
 var socket;
 $(document).ready(function() {
+  if (Notification.permission != 'granted') {
+    try {
+        Notification.requestPermission().then(function(result){ console.log(result); });
+    } catch (error) {
+        if (error instanceof TypeError) {
+            Notification.requestPermission(function(result) {
+                console.log(result);
+            });
+        } else {
+            throw error;
+        }
+    }
+  }
   socket = io.connect('//' + document.domain + ':' + location.port + '/game');
   socket.on('connect', function() {
     socket.emit('joined', {});
@@ -74,6 +87,21 @@ $(document).ready(function() {
       }
     }
     chatContainer.scrollTop = chatContainer.scrollHeight;
+
+    if (data.user != 'SERVER') {
+      $.titleAlert("New chat from " + data.user, {
+        requireBlur: true,
+        stopOnFocus: true
+      });
+
+      if (Notification.permission == 'granted') {
+        if (!document.hasFocus()) {
+          var notification = new Notification('New chat from ' + data.user, {
+            body: data.message
+          });
+        }
+      }
+    }
   });
 
   socket.on('update_timer', function(data) {
@@ -82,7 +110,7 @@ $(document).ready(function() {
     $('#timer').text(data.timer);
   });
 
-  $('#start-button').click(function() {
+  $('#start-game-button').click(function() {
     socket.emit('start_timer', {});
     console.log('Start button pressed!');
   });
