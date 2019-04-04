@@ -16,7 +16,7 @@ $(document).ready(function() {
     console.log(data);
     for (var i = 0; i < data.users.length; i++) {
       console.log(data.users[i]);
-      leaderboard.append('<tr><td class="icon-cnt"><img class="p-icon" src="head_image.png"></td><td class="player-name">' + data.users[i][0] + '</td><td class="player-score">' + data.users[i][1] + '</td></tr>');
+      leaderboard.append('<tr><td class="user-icon"><img class="p-icon" src="' + head_image_url + '"></td><td class="player-name">' + data.users[i][0] + '</td><td class="player-score">' + data.users[i][1] + '</td></tr>');
     }
   });
 

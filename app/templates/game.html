@@ -3,6 +3,9 @@
   <head>
     <title>Woggle: {{ room }}</title>
       {% include 'head.html' %}
+      <script type="text/javascript">
+        var head_image_url = "{{ url_for('static', filename='img/head_image.png') }}";
+      </script>
       <script type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
   </head>
     <body>
