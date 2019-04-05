@@ -57,7 +57,24 @@ def timer(room, seconds=60):
     for i in range(seconds):
         socketio.emit('update_timer', {'timer': i+1}, room=room, namespace='/game')
         sleep(1)
+<<<<<<< HEAD
         
+=======
+
+@socketio.on('add_word', namespace='/game')
+def add_word(user_name, word):
+    room = getRoom(session.get('room'))
+    user = getUser(room, user_name)
+    user.add_word_to_list(word)
+
+@socketio.on('end_game_words', namespace='/game')
+def end_game_words(room):
+    room = getRoom(session.get('room'))
+    final_words = {}
+    for user in room.get_room_users():
+        final_words[user.get_user_name()] = user.get_word_list()    
+
+>>>>>>> 0bef344997d2bdcd0ec9375300e23679ccc1f44d
 @socketio.on('leave', namespace='/game')
 def leave(message):
     room = session.get('room')
