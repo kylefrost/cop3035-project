@@ -53,12 +53,11 @@ def start_timer(data):
     thread.daemon = True
     thread.start()
 
-
 def timer(room, seconds=60):
     for i in range(seconds):
         socketio.emit('update_timer', {'timer': i+1}, room=room, namespace='/game')
         sleep(1)
-
+        
 @socketio.on('leave', namespace='/game')
 def leave(message):
     room = session.get('room')

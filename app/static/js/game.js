@@ -95,11 +95,9 @@ $(document).ready(function() {
       });
 
       if (Notification.permission == 'granted') {
-        if (!document.hasFocus()) {
-          var notification = new Notification('New chat from ' + data.user, {
-            body: data.message
-          });
-        }
+        var notification = new Notification('New chat from ' + data.user, {
+          body: data.message
+        });
       }
     }
   });
@@ -108,6 +106,11 @@ $(document).ready(function() {
     console.log('received data');
     console.log(data);
     $('#timer').text(data.timer);
+  });
+
+  socket.on('word_success', function(data) {
+
+    socket.emit('add_word', data.user, data.word);
   });
 
   $('#start-game-button').click(function() {
