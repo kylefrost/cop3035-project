@@ -92,9 +92,34 @@ def add_word(user_name, word):
 @socketio.on('end_game_words', namespace='/game')
 def end_game_words(room):
     room = getRoom(session.get('room'))
-    final_words = {}
+
+    #master list
+    roomList = []
     for user in room.get_room_users():
-        final_words[user.get_user_name()] = user.get_word_list()
+        roomList.append(get_word_list())
+
+    #find duplicates in room list
+    seen = set()
+    dupes = set()
+    for x in roomList:
+        if x in seen and x not in dupes:
+            dupes.add(x)
+        else:
+            seen.add(x)
+
+    #final words dictionary
+    #final_words = {}
+    #for user in room.get_room_users():
+       # final_words[user.get_user_name()] = user.get_word_list()
+
+   # for user in final_words:
+        #for each user, filter words of other users
+       # filtered_list = list(set(final_words[user]) - dupes)
+       # user.add_filtered_list(filtered_list)
+    for user in room.get_room_users():
+        filtered = list(set(user.get_word_list()) - dupes)
+        user.add_filtered_list(filtered)
+
 
 @socketio.on('leave', namespace='/game')
 def leave(data):
