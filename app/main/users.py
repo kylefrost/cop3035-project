@@ -5,6 +5,7 @@ class User():
         self.user_id = socketId
         self.user_score = 0
         self.word_list = []
+        self.round_score = 0 # Created round_score to be added to overall score then 0ed again
 
     def get_user_name(self):
         return self.user_name

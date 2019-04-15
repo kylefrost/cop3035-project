@@ -109,3 +109,19 @@ def leave(data):
     print(data['user'] + ' left the room.')
     emit('new_chat', {'user': 'SERVER', 'message': user.get_user_name() + ' has left the room.'}, room=room.get_room_name())
     session.clear()
+
+
+
+def update_scores(room):
+    end_game_words # Do I just call it? or should it be returning a dict of words per player?
+    score_matrix = {3:1, 4:1, 5:2, 6:3, 7:5} # A word longer than 7 is worth 11 pts
+
+    for player in room.get_room_users:
+        for word in final_words[player]: # Not sure how to get this dict
+            if len(word) > 7:
+                player.round_score += 11
+            else:
+                player.round_score += score_matrix[len(word)]
+
+        player.user_score += player.round_score
+        player.round_score = 0
