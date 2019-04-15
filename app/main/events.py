@@ -92,9 +92,26 @@ def add_word(user_name, word):
 @socketio.on('end_game_words', namespace='/game')
 def end_game_words(room):
     room = getRoom(session.get('room'))
-    final_words = {}
+    # final_words = {}
+    # for user in room.get_room_users():
+    #     final_words[user.get_user_name()] = user.get_word_list()
+    # users = room.get_room_users()
+    # for user in users:
+    #     others = users
+    #     others.remove(user)
+    #     others_list = []
+    #     for other in others:
+    #         others_list.append(other.word_list)
+    #
+    #     #user.filtered_word_list = []
+    #
+    #     for word in user.word_list:
+    #         if word not in others_list:
+    #             user.filtered_word_list.append(word)
+
     for user in room.get_room_users():
-        final_words[user.get_user_name()] = user.get_word_list()
+        print(user.get_user_name() + "'s filtered word list:")
+        print(user.filtered_word_list)
 
 @socketio.on('leave', namespace='/game')
 def leave(data):
