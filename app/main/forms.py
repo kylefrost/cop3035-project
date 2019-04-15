@@ -15,3 +15,5 @@ class LoginForm(FlaskForm):
             room = next((x for x in rooms.active_rooms if x.get_room_name() == self.room.data), None)
             if field.data != room.get_room_password():
                 raise ValidationError("Password is incorrect")
+            if len(room.get_room_users()) == 8:
+                raise ValidationError("Already 8 users in the room")

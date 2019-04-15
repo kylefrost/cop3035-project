@@ -17,4 +17,7 @@ class Room():
     def get_room_users(self):
         return self.users
 
+    def remove_room_user(self, name):
+        self.users = [x for x in self.users if x.get_user_name() != name]
+
 active_rooms = []

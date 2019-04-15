@@ -8,30 +8,45 @@
       </script>
       <script type="text/javascript" src="{{ url_for('static', filename='js/game.js') }}"></script>
   </head>
-    <body>
-      <div id="main-container">
-        <div id="sidebar">
-          <div id="leaderboard-container">
-            <table id="leaderboard-table"></table>
-          </div>
-          <div id="chat">
-            <div id="chat-messages-container">
-              <ul id="chat-messages-list"></ul>
-            </div>
-            <form id="chat-form">
-              <input id="chat-input" autocomplete="off" placeholder="Message" /><button id="chat-button">Send</button>
-            </form>
-          </div>
+  <body>
+    <div id="main-container">
+      <div id="sidebar">
+        <div id="leaderboard-container">
+          <table id="leaderboard-table"></table>
         </div>
-        <div id="game">
-          <div id="room-banner">
-            <img src="{{ url_for('static', filename='img/woggle.png') }}" id="room-banner-image"></img>
-            <span id="room-name">{{ room }}</span>
+        <div id="chat">
+          <div id="chat-messages-container">
+            <ul id="chat-messages-list"></ul>
           </div>
-          <div id="timer"></div>
-          <div id="game-wrap"></div>
-          <button id="start-game-button">Start</button>
+          <form id="chat-form">
+            <input id="chat-input" autocomplete="off" placeholder="Message" /><button id="chat-button">Send</button>
+          </form>
         </div>
       </div>
-    </body>
+      <div id="game">
+        <div id="room-banner">
+          <img src="{{ url_for('static', filename='img/woggle.png') }}" id="room-banner-image"></img>
+          <span id="room-name">{{ room }}</span>
+        </div>
+        <div id="timer"></div>
+        <div id="game-wrap">
+          <button id="start-game-button" disabled>Start</button>
+          <div id="board-wrap" hidden>
+            <div id='game-board'></div>
+            <br>
+            <div id="output-container">
+              <div id="output"></div>
+            </div>
+            <br>
+            <button id='clear-all'>Submit</button>
+          </div>
+        </div>
+        <div id="word-list">
+          <div id="word-list-container">
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bogglelogic.js') }}"></script>
+  </body>
 </html>

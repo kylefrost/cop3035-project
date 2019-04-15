@@ -26,10 +26,13 @@ $(document).ready(function() {
     var leaderboard = $('#leaderboard-table');
     leaderboard.empty();
     leaderboard.append('<tr><th style="text_align:left;padding-left:30px;" colspan="2">Players</th><th style="text-align:center">Score</th></tr>');
-    console.log(data);
     for (var i = 0; i < data.users.length; i++) {
-      console.log(data.users[i]);
       leaderboard.append('<tr><td class="user-icon"><img class="p-icon" src="' + head_image_url + '"></td><td class="player-name">' + data.users[i][0] + '</td><td class="player-score">' + data.users[i][1] + '</td></tr>');
+    }
+    if (data.users.length > 1) {
+      $('#start-game-button').prop('disabled', false);
+    } else {
+      $('#start-game-button').prop('disabled', true);
     }
   });
 
@@ -103,20 +106,83 @@ $(document).ready(function() {
   });
 
   socket.on('update_timer', function(data) {
-    console.log('received data');
-    console.log(data);
     $('#timer').text(data.timer);
+    if (parseInt(data.timer.slice(-2)) < 10 && data.timer != '01:00') {
+      $('#timer').css('color', 'red');
+    }
   });
 
   socket.on('word_success', function(data) {
+    console.log(data);
+    var wordList = $('#word-list-container');
 
+    wordList.append('<div class="word-list-word">' + data.word + '</div>');
     socket.emit('add_word', data.user, data.word);
   });
 
-  $('#start-game-button').click(function() {
-    socket.emit('start_timer', {});
-    $("#start-game-button").remove();
+  socket.on('rolled_die', function(data) {
+    // Start the game
+    console.log(data);
+
+    var newGameBoard = $('#game-board');
+    newGameBoard.empty();
+
+    for (var i = 0; i < data.dice.length; i++) {
+      newGameBoard.append('<button class="letter">' + data.dice[i] + '</button>')
+    }
+
+    $("#board-wrap").fadeIn(400, function() {
+      setBoggleBoardVariables();
+    });
+  });
+
+  socket.on('play_error', function(data) {
+    var game = $('#main-container');
+    var notification = $('.serverNotification');
+
+    notification.remove();
+    game.append('<div class="serverNotification playError server-notify-show">' + data.error + '</div>');
+    setTimeout(function() {
+      $('.serverNotification').removeClass("server-notify-show").addClass("server-notify-hide");
+    }, 3000);
+  });
+
+  socket.on('get_ready_front', function(data) {
+    var start = $("#start-game-button");
+    var flashInterval = setInterval(function () {
+      start.css("background-color", function () {
+        this.switch = !this.switch
+        return this.switch ? "#f48221" : "#ffcd9e"
+      });
+    }, 100);
+    start.prop('disabled', true);
+    start.text("Ready...");
+    setTimeout(function() {
+      start.text("Set...");
+      setTimeout(function() {
+        start.text("Go!");
+        setTimeout(function() {
+          start.fadeOut(400, function() {
+            if (data.user == sessionStorage.getItem('you')) {
+              socket.emit('start_timer', {});
+            }
+            window.clearInterval(flashInterval);
+          });
+        }, 1000);
+      }, 1000);
+    }, 1000);
+
     console.log('Start button pressed!');
+  });
+
+  socket.on('end_game', function(data) {
+    $("#board-wrap").add("#timer").fadeOut(400, function() {
+
+    });
+  });
+
+  $('#start-game-button').click(function() {
+    socket.emit('get_ready', sessionStorage.getItem('you'));
   });
 
   $('#chat-form').submit(function() {
@@ -127,13 +193,9 @@ $(document).ready(function() {
   });
 });
 
-function leave_room() {
-  socket.emit('leave', {}, function() {
-    socket.disconnect();
-    window.location.href = "{{ url_for('main.index') }}";
-  });
-}
-
 window.onbeforeunload = function () {
-  return false;
+  socket.emit('leave', {'user': sessionStorage.getItem('you')}, function() {
+    socket.disconnect();
+  });
+  //return false;
 }
