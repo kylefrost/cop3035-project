@@ -57,9 +57,6 @@ def timer(room, seconds=60):
     for i in range(seconds):
         socketio.emit('update_timer', {'timer': i+1}, room=room, namespace='/game')
         sleep(1)
-<<<<<<< HEAD
-        
-=======
 
 @socketio.on('add_word', namespace='/game')
 def add_word(user_name, word):
@@ -74,10 +71,25 @@ def end_game_words(room):
     for user in room.get_room_users():
         final_words[user.get_user_name()] = user.get_word_list()    
 
->>>>>>> 0bef344997d2bdcd0ec9375300e23679ccc1f44d
 @socketio.on('leave', namespace='/game')
 def leave(message):
     room = session.get('room')
     leave_room(room)
     emit('status', {'msg': session.get('name') + ' has left the game.'}, room=room)
     session.clear()
+
+
+
+def update_scores(room):
+    end_game_words # Do I just call it? or should it be returning a dict of words per player?
+    score_matrix = {3:1, 4:1, 5:2, 6:3, 7:5} # A word longer than 7 is worth 11 pts
+    
+    for player in room.get_room_users:
+        for word in final_words[player]: # Not sure how to get this dict
+            if len(word) > 7:
+                player.round_score += 11
+            else:
+                player.round_score += score_matrix[len(word)]
+
+        player.user_score += player.round_score
+        player.round_score = 0
