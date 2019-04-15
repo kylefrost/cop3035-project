@@ -5,6 +5,7 @@ class User():
         self.user_id = socketId
         self.user_score = 0
         self.word_list = []
+        self.filtered_list = []
         self.round_score = 0 # Created round_score to be added to overall score then 0ed again
 
     def get_user_name(self):
@@ -27,3 +28,6 @@ class User():
 
     def add_word_to_list(self, new_word):
         self.word_list.append(new_word)
+
+    def add_filtered_list(self, filtered_list):
+        self.filtered_list = filtered_list
