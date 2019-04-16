@@ -120,6 +120,10 @@ def end_game_words(room):
         filtered = list(set(user.get_word_list()) - dupes)
         user.add_filtered_list(filtered)
 
+    for user in room.get_room_users():
+        print(user.get_user_name() + "'s filtered word list:")
+        print(user.filtered_word_list)
+
 
 @socketio.on('leave', namespace='/game')
 def leave(data):
