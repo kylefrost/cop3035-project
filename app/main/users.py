@@ -29,5 +29,10 @@ class User():
     def add_word_to_list(self, new_word):
         self.word_list.append(new_word)
 
+<<<<<<< HEAD
+    def add_filtered_list(self, filtered):
+        self.filtered_list = filtered
+=======
     def add_filtered_list(self, filtered_list):
         self.filtered_list = filtered_list
+>>>>>>> 42a05baa42fd5b7f82f63ed178610f6cc1d09c07
