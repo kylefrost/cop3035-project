@@ -17,6 +17,9 @@ class Room():
     def get_room_users(self):
         return self.users
 
+    def get_room_host(self):
+        return self.room_host
+
     def remove_room_user(self, name):
         self.users = [x for x in self.users if x.get_user_name() != name]
 

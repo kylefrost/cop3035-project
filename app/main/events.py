@@ -37,7 +37,7 @@ def joined(message):
 def send_chat(in_user, message):
     room = getRoom(session.get('room'))
     user = getUser(room, in_user)
-    emit('new_chat', {'user': user.get_user_name(), 'message': message}, room=room.get_room_name(), skip_sid=user.get_user_id())
+    emit('new_chat', {'user': user.get_user_name(), 'message': message}, room=room.get_room_name())
 
 @socketio.on('get_ready', namespace='/game')
 def get_ready(starting_user):
@@ -56,15 +56,16 @@ def start_timer(data):
         rolled = die[0]
         rolled_die.append(rolled)
     emit("rolled_die", {'dice':rolled_die}, room=room.get_room_name())
-    thread = Thread(target=timer, args=(room.get_room_name(),))
+    thread = Thread(target=timer, args=(room.get_room_name(),room.get_room_host(),))
     thread.daemon = True
     thread.start()
 
-def timer(room, seconds=60, end=-1, step=-1):
+def timer(room, host, seconds=15, end=-1, step=-1):
     for i in range(seconds, end, step):
         socketio.emit('update_timer', {'timer': strftime('%M:%S', gmtime(i))}, room=room, namespace='/game')
         sleep(1)
-    socketio.emit('end_game', {}, room=room, namespace='/game')
+    print("Timer ending.")
+    socketio.emit('end_game', {'sender': host}, room=room, namespace='/game')
 
 @socketio.on('new_user_word', namespace='/game')
 def new_user_word(user_name, input_word):
@@ -135,12 +136,8 @@ def leave(data):
     emit('new_chat', {'user': 'SERVER', 'message': user.get_user_name() + ' has left the room.'}, room=room.get_room_name())
     session.clear()
 
-
-
 def update_scores(room):
-    end_game_words # Do I just call it? or should it be returning a dict of words per player?
     score_matrix = {3:1, 4:1, 5:2, 6:3, 7:5} # A word longer than 7 is worth 11 pts
-    
     room_obj = getRoom(room)
 
     for user in room_obj.get_room_users:
@@ -151,7 +148,6 @@ def update_scores(room):
                 player.round_score += 11
             else:
                 player.round_score += score_matrix[len(word)]
-        
+
         player.user_score += player.round_score
         current_overall = (player.round_score, player.user_score) #emmitt this tuple?
-        

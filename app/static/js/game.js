@@ -176,9 +176,19 @@ $(document).ready(function() {
   });
 
   socket.on('end_game', function(data) {
+    if (data.sender == sessionStorage.getItem('you')) {
+      console.log("i am " + sessionStorage.getItem('you') + " and i am calling end_game_words.");
+      socket.emit('end_game_words', {});
+    }
+    
     $("#board-wrap").add("#timer").fadeOut(400, function() {
-
+      //$("#start-game-button").text("Start");
+      //$("#start-game-button").prop("style", false);
     });
+  });
+
+  socket.on('all_word_lists', function(data) {
+    console.log(data);
   });
 
   $('#start-game-button').click(function() {
