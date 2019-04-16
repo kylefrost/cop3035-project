@@ -96,7 +96,7 @@ def end_game_words(room):
     #master list
     roomList = []
     for user in room.get_room_users():
-        roomList.append(get_word_list())
+        roomList = roomList + user.get_word_list()
 
     #find duplicates in room list
     seen = set()
@@ -107,22 +107,18 @@ def end_game_words(room):
         else:
             seen.add(x)
 
-    #final words dictionary
-    #final_words = {}
-    #for user in room.get_room_users():
-       # final_words[user.get_user_name()] = user.get_word_list()
-
-   # for user in final_words:
-        #for each user, filter words of other users
-       # filtered_list = list(set(final_words[user]) - dupes)
-       # user.add_filtered_list(filtered_list)
+    users_dict = {}
     for user in room.get_room_users():
         filtered = list(set(user.get_word_list()) - dupes)
         user.add_filtered_list(filtered)
 
+        users_dict[user.get_user_name()] = (user.get_word_list(), user.get_filtered_list())
+
+    emit('all_word_lists', users_dict, room=room.get_room_name())
+
     for user in room.get_room_users():
         print(user.get_user_name() + "'s filtered word list:")
-        print(user.filtered_word_list)
+        print(user.get_filtered_list())
 
 
 @socketio.on('leave', namespace='/game')
