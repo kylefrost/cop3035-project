@@ -146,11 +146,11 @@ def leave(data):
     session.clear()
 
 def update_scores(room):
-    score_matrix = {3:1, 4:1, 5:2, 6:3, 7:5} # A word longer than 7 is worth 11 pts
+    score_matrix = {3:1, 4:1, 5:2, 6:3, 7:5}
     room_obj = getRoom(room)
 
     for user in room_obj.get_room_users():
-        user.round_score = 0 # clean slate
+        user.round_score = 0
 
         for word in user.get_filtered_list():
             if len(word) > 7:
