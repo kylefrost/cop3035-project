@@ -34,3 +34,11 @@ class User():
 
     def get_filtered_list(self):
         return self.filtered_list
+
+    def get_round_score(self):
+        return self.round_score
+
+    def reset_properties(self):
+        self.word_list.clear()
+        self.filtered_list.clear()
+        self.round_score = 0

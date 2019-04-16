@@ -106,9 +106,14 @@ $(document).ready(function() {
   });
 
   socket.on('update_timer', function(data) {
+    if (!$('#timer').is(":visible")) {
+      $('#timer').toggle();
+    }
     $('#timer').text(data.timer);
     if (parseInt(data.timer.slice(-2)) < 10 && data.timer != '01:00') {
       $('#timer').css('color', 'red');
+    } else {
+      $('#timer').css('color', 'black');
     }
   });
 
@@ -124,14 +129,20 @@ $(document).ready(function() {
     // Start the game
     console.log(data);
 
-    var newGameBoard = $('#game-board');
-    newGameBoard.empty();
+    var newGameBoard = $('<div />', {
+      'id': 'game-board'
+    });
+    //newGameBoard.empty();
 
     for (var i = 0; i < data.dice.length; i++) {
       newGameBoard.append('<button class="letter">' + data.dice[i] + '</button>')
     }
 
+    $("#board-wrap").append(newGameBoard);
+    $("#board-wrap").append("<br>")
+    $("#board-wrap").append('<div id="output-container"><div id="output"></div></div><br id="output-break" /><button id="clear-all">Submit</button>');
     $("#board-wrap").fadeIn(400, function() {
+      reset();
       setBoggleBoardVariables();
     });
   });
@@ -176,19 +187,52 @@ $(document).ready(function() {
   });
 
   socket.on('end_game', function(data) {
-    if (data.sender == sessionStorage.getItem('you')) {
-      console.log("i am " + sessionStorage.getItem('you') + " and i am calling end_game_words.");
-      socket.emit('end_game_words', {});
-    }
-    
-    $("#board-wrap").add("#timer").fadeOut(400, function() {
-      //$("#start-game-button").text("Start");
-      //$("#start-game-button").prop("style", false);
+    $("#board-wrap").fadeOut(400, function() {
+      if (data.sender == sessionStorage.getItem('you')) {
+        console.log("i am " + sessionStorage.getItem('you') + " and i am calling end_game_words.");
+        socket.emit('end_game_words', {});
+      }
+      // $("#output-container").remove();
+      // $("#output-break").remove();
+      // $("#clear-all").remove();
+      $("#board-wrap").empty();
     });
+    $("#timer").fadeOut();
   });
 
   socket.on('all_word_lists', function(data) {
     console.log(data);
+
+    var endWordsContainer = $('#end-word-lists-container');
+    endWordsContainer.empty();
+
+    for (var key in data) {
+      var newDiv = $("<div />", {
+        "class": "end-word-list"
+      });
+      newDiv.append('<div class="end-word-list-owner">' + key + ', round score: ' + data[key][2] + '</div><hr>');
+      for (var i in data[key][0]) {
+        if (!data[key][1].includes(data[key][0][i])) {
+          newDiv.append('<div class="word-list-word" style="text-decoration: line-through;color: red;">' + data[key][0][i] + '</div>');
+        } else {
+          newDiv.append('<div class="word-list-word">' + data[key][0][i] + '</div>');
+        }
+      }
+
+      endWordsContainer.append(newDiv);
+      endWordsContainer.append("<br>");
+    }
+
+    $("#end-word-lists-container").fadeIn();
+
+    setTimeout(function() {
+      $("#end-word-lists-container").fadeOut(400, function() {
+        $("#start-game-button").text("Start");
+        $("#start-game-button").fadeIn();
+        $("#start-game-button").prop("style", false);
+        $("#word-list-container").empty();
+      });
+    }, 10000);
   });
 
   $('#start-game-button').click(function() {

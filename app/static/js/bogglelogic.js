@@ -1,17 +1,47 @@
-var magicNumber,
-    output,
-    gameBoard,
-    tiles,
-    clearAll,
-    indexTiles,
-    clearActiveTiles,
-    disableTiles,
-    validateTile,
-    enableSurroundingTiles,
-    clicker,
-    submitWord;
+
+
+function reset() {
+  delete(magicNumber);
+  delete(output);
+  delete(gameBoard);
+  delete(tiles);
+  delete(clearAll);
+  delete(indexTiles);
+  delete(clearActiveTiles);
+  delete(disableTiles);
+  delete(validateTile);
+  delete(enableSurroundingTiles);
+  delete(clicker);
+  delete(submitWord);
+}
 
 function setBoggleBoardVariables() {
+  delete(magicNumber);
+  delete(output);
+  delete(gameBoard);
+  delete(tiles);
+  delete(clearAll);
+  delete(indexTiles);
+  delete(clearActiveTiles);
+  delete(disableTiles);
+  delete(validateTile);
+  delete(enableSurroundingTiles);
+  delete(clicker);
+  delete(submitWord);
+  
+  var magicNumber,
+      output,
+      gameBoard,
+      tiles,
+      clearAll,
+      indexTiles,
+      clearActiveTiles,
+      disableTiles,
+      validateTile,
+      enableSurroundingTiles,
+      clicker,
+      submitWord;
+
   var magicNumber = 4;
 
   var output = document.getElementById('output');

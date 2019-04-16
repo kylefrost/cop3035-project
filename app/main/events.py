@@ -60,7 +60,7 @@ def start_timer(data):
     thread.daemon = True
     thread.start()
 
-def timer(room, host, seconds=15, end=-1, step=-1):
+def timer(room, host, seconds=60, end=-1, step=-1):
     for i in range(seconds, end, step):
         socketio.emit('update_timer', {'timer': strftime('%M:%S', gmtime(i))}, room=room, namespace='/game')
         sleep(1)
@@ -71,6 +71,7 @@ def timer(room, host, seconds=15, end=-1, step=-1):
 def new_user_word(user_name, input_word):
     room = getRoom(session.get('room'))
     user = getUser(room, user_name)
+    print(user_name + " played " + input_word + ".")
     if len(input_word) < 3:
         emit('play_error', {'error': 'Word must be longer than 3 letters.'}, room=user.get_user_id())
         return
@@ -113,13 +114,21 @@ def end_game_words(room):
         filtered = list(set(user.get_word_list()) - dupes)
         user.add_filtered_list(filtered)
 
-        users_dict[user.get_user_name()] = (user.get_word_list(), user.get_filtered_list())
+    update_scores(room.get_room_name())
+
+    for user in room.get_room_users():
+        users_dict[user.get_user_name()] = (user.get_word_list(), user.get_filtered_list(), user.get_round_score())
+        print(user.get_user_name() + "'s filtered word list:")
+        print(user.get_filtered_list())
 
     emit('all_word_lists', users_dict, room=room.get_room_name())
 
-    for user in room.get_room_users():
-        print(user.get_user_name() + "'s filtered word list:")
-        print(user.get_filtered_list())
+    users_list = []
+    for u in room.get_room_users():
+        users_list.append([u.get_user_name(), u.get_user_score()])
+    emit('update_leaderboard', {'users': users_list}, room=room.get_room_name())
+
+    reset_game_properties(room.get_room_name())
 
 
 @socketio.on('leave', namespace='/game')
@@ -143,10 +152,16 @@ def update_scores(room):
     for user in room_obj.get_room_users():
         user.round_score = 0 # clean slate
 
-        for word in user.filtered_list:
+        for word in user.get_filtered_list():
             if len(word) > 7:
                 user.round_score += 11
             else:
                 user.round_score += score_matrix[len(word)]
 
         user.user_score += user.round_score
+
+def reset_game_properties(room_name):
+    room = getRoom(room_name)
+
+    for user in room.get_room_users():
+        user.reset_properties()

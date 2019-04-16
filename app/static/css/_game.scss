@@ -254,6 +254,31 @@
   margin: auto;
 }
 
+#end-word-lists-container {
+  top: 150px;
+  position: relative;
+  min-height: 70%;
+  text-align: center;
+}
+
+.end-word-list {
+  position: relative;
+  float: left;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: auto;
+  background-color: white;
+  border: 2px solid #afafaf;
+  border-radius: 0.5rem;
+  font-size: 20px;
+  color: #afafaf;
+  font-weight: 700;
+  padding: 10px 15px 10px 15px;
+  margin-right: 3px;
+  margin-top: 3px;
+  min-width: 50%;
+}
+
 .word-list-word {
   position: relative;
   bottom: 0;
