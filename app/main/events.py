@@ -92,6 +92,7 @@ def add_word(user_name, word):
 @socketio.on('end_game_words', namespace='/game')
 def end_game_words(room):
     room = getRoom(session.get('room'))
+    
     # final_words = {}
     # for user in room.get_room_users():
     #     final_words[user.get_user_name()] = user.get_word_list()
