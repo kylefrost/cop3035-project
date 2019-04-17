@@ -19,9 +19,8 @@ By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
 # Plan
 ## Core
 ### Rooms
-  - Maximum 8 and minimum 2 of players (if not vs. computer)
+  - Maximum 8 and minimum 2 of players
   - Password protected rooms
-  - Settings (play to N, etc)
   - Server Notifications
     - e.g. "Round is starting...", "That's not a word!", etc
 ### Gameplay
@@ -30,7 +29,7 @@ By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
       - Random side of each piece
       - Random placement on 4x4 board
     - Correct choosing logic (e.g. piece has to be next to the next, no doubling up)
-  - 3 minute timer (allow custom time in settings?) to find words
+  - 1 minute timer to find words
 ### Scoring
   - Leaderboard
     - Player list with scores
@@ -44,17 +43,7 @@ By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
   - Show everyone's word lists after each round to show scoring
 ### Chat
   - Chat system
-    - Typing indicator
     - To/From styling
       - Names with messages
-      - Users can choose colors?
   - Include relevant server messages
-    - e.g. "Round is starting...", "User X has entered the room", etc
-## Wishlist
-  - Theme customization
-    - Night/Day Switch
-      - Manual switch
-      - Based on location sunset data
-    - Custom colored board
-      - Person starting/hosting game picks theme?
-  - __*TBD*__
+    - e.g. "User X has entered the room", etc
