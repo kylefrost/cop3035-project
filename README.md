@@ -17,31 +17,30 @@ By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
   6. Open http://localhost:5000
 
 # Plan
-## Core
-### Rooms
+## Rooms
   - Maximum 8 and minimum 2 of players
   - Password protected rooms
   - Server Notifications
     - e.g. "Round is starting...", "That's not a word!", etc
-### Gameplay
+## Gameplay
   - Boggle Pieces Board
     - Rolling randomly
       - Random side of each piece
       - Random placement on 4x4 board
     - Correct choosing logic (e.g. piece has to be next to the next, no doubling up)
   - 1 minute timer to find words
-### Scoring
+## Scoring
   - Leaderboard
     - Player list with scores
     - Changes after each round
-### Word Selection
+## Word Selection
   - Updating list of words
     - Add words to "box" as players find them
   - Only allow 3+ letter words
   - Check against dictionary
     - Everytime someone submits word, check
   - Show everyone's word lists after each round to show scoring
-### Chat
+## Chat
   - Chat system
     - To/From styling
       - Names with messages
