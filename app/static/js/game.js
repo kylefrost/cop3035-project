@@ -1,18 +1,18 @@
 var socket;
 $(document).ready(function() {
-  if (Notification.permission != 'granted') {
-    try {
-        Notification.requestPermission().then(function(result){ console.log(result); });
-    } catch (error) {
-        if (error instanceof TypeError) {
-            Notification.requestPermission(function(result) {
-                console.log(result);
-            });
-        } else {
-            throw error;
-        }
-    }
-  }
+  // if (Notification.permission != 'granted') {
+  //   try {
+  //       Notification.requestPermission().then(function(result){ console.log(result); });
+  //   } catch (error) {
+  //       if (error instanceof TypeError) {
+  //           Notification.requestPermission(function(result) {
+  //               console.log(result);
+  //           });
+  //       } else {
+  //           throw error;
+  //       }
+  //   }
+  // }
   socket = io.connect('//' + document.domain + ':' + location.port + '/game');
   socket.on('connect', function() {
     socket.emit('joined', {});
@@ -97,11 +97,11 @@ $(document).ready(function() {
         stopOnFocus: true
       });
 
-      if (Notification.permission == 'granted') {
-        var notification = new Notification('New chat from ' + data.user, {
-          body: data.message
-        });
-      }
+      // if (Notification.permission == 'granted') {
+      //   var notification = new Notification('New chat from ' + data.user, {
+      //     body: data.message
+      //   });
+      // }
     }
   });
 
