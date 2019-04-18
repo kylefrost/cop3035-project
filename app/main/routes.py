@@ -4,7 +4,11 @@ from .forms import LoginForm
 
 @main.route('/', methods=['GET', 'POST'])
 def index():
+    """
+    Handles index page /
+    """
     form = LoginForm()
+    # Ensures multiple rooms with same name aren't created, join room if exists
     if form.validate_on_submit():
         if any(x.get_room_name() == form.room.data for x in rooms.active_rooms):
             room = next((x for x in rooms.active_rooms if x.get_room_name() == form.room.data), None)
@@ -20,6 +24,9 @@ def index():
 
 @main.route('/game')
 def game():
+    """
+    Handles game page /game
+    """
     name = session.get('name', '')
     room = session.get('room', '')
     if name == '' or room == '':

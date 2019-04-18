@@ -8,13 +8,22 @@ from time import sleep, strftime, gmtime
 from threading import Thread
 
 def getRoom(name):
+    """
+    Gets room object from active rooms
+    """
     return next((x for x in rooms.active_rooms if x.get_room_name() == name), None)
 
 def getUser(room, name):
+    """
+    Gets user object from incoming room object's user list
+    """
     return next((x for x in room.get_room_users() if x.get_user_name() == name), None)
 
 @socketio.on('connect', namespace='/game')
 def on_connect():
+    """
+    Initializes objects and adds user to room
+    """
     room = getRoom(session.get('room'))
     name = session.get('name')
     user = users.User(name, room.get_room_name(), request.sid)
@@ -23,6 +32,9 @@ def on_connect():
 
 @socketio.on('joined', namespace='/game')
 def joined(message):
+    """
+    Sets frontend storage data, sends server message of user join, adds user to leaderboard
+    """
     room = getRoom(session.get('room'))
     user = getUser(room, session.get('name'))
     join_room(room.get_room_name())
@@ -35,18 +47,27 @@ def joined(message):
 
 @socketio.on('send_chat', namespace='/game')
 def send_chat(in_user, message):
+    """
+    Takes in chat and outputs to entire room
+    """
     room = getRoom(session.get('room'))
     user = getUser(room, in_user)
     emit('new_chat', {'user': user.get_user_name(), 'message': message}, room=room.get_room_name())
 
 @socketio.on('get_ready', namespace='/game')
 def get_ready(starting_user):
+    """
+    Informs frontend to begin preparing game state
+    """
     room = getRoom(session.get('room'))
     user = getUser(room, starting_user)
     emit('get_ready_front', {'user': starting_user}, room=room.get_room_name())
 
 @socketio.on('start_timer',namespace='/game')
 def start_timer(data):
+    """
+    Rolls die, starts timer, and begins game
+    """
     print('Starting game timer.')
     dice = [['R','I','F','O','B','X'],['I','F','E','H','E','Y'],['D','I','N','O','W','S'],['U','T','O','K','N','D'],['H','M','S','R','A','O'],['L','U','P','E','T','S'],['A','C','I','T','O','A'],['Y','L','G','K','U','E'],['Qu','B','M','J','O','A'],['E','H','I','S','P','N'],['V','E','T','I','G','N'],['B','A','L','I','Y','T'],['E','Z','A','V','N','D'],['R','A','L','E','S','C'],['U','W','I','L','R','G'],['P','A','C','E','M','D']]
     room = getRoom(session.get('room'))
@@ -61,6 +82,9 @@ def start_timer(data):
     thread.start()
 
 def timer(room, host, seconds=60, end=-1, step=-1):
+    """
+    Creates timer and sends end game to everyone after game is completed
+    """
     for i in range(seconds, end, step):
         socketio.emit('update_timer', {'timer': strftime('%M:%S', gmtime(i))}, room=room, namespace='/game')
         sleep(1)
@@ -69,6 +93,9 @@ def timer(room, host, seconds=60, end=-1, step=-1):
 
 @socketio.on('new_user_word', namespace='/game')
 def new_user_word(user_name, input_word):
+    """
+    Validates user word submissions and sends appropriate errors
+    """
     room = getRoom(session.get('room'))
     user = getUser(room, user_name)
     print(user_name + " played " + input_word + ".")
@@ -85,6 +112,9 @@ def new_user_word(user_name, input_word):
 
 @socketio.on('add_word', namespace='/game')
 def add_word(user_name, word):
+    """
+    Adds word to users word list if validated
+    """
     room = getRoom(session.get('room'))
     user = getUser(room, user_name)
     user.add_word_to_list(word)
@@ -93,6 +123,9 @@ def add_word(user_name, word):
 
 @socketio.on('end_game_words', namespace='/game')
 def end_game_words(room):
+    """
+    Filters words if multiple users play same word and sends to frontend
+    """
     room = getRoom(session.get('room'))
 
     #master list
@@ -133,6 +166,9 @@ def end_game_words(room):
 
 @socketio.on('leave', namespace='/game')
 def leave(data):
+    """
+    Removes user from room, sends server message, removes from leaderboard
+    """
     room = getRoom(session.get('room'))
     user = getUser(room, session.get('name'))
     leave_room(room.get_room_name())
@@ -146,6 +182,9 @@ def leave(data):
     session.clear()
 
 def update_scores(room):
+    """
+    Updates all the user scores and calculates based on Boggle rules
+    """
     score_matrix = {3:1, 4:1, 5:2, 6:3, 7:5}
     room_obj = getRoom(room)
 
@@ -161,6 +200,9 @@ def update_scores(room):
         user.user_score += user.round_score
 
 def reset_game_properties(room_name):
+    """
+    Resets round specific user properties in preperation for next game
+    """
     room = getRoom(room_name)
 
     for user in room.get_room_users():

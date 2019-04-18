@@ -1,4 +1,7 @@
 class User():
+    """
+    User class handles every user, or game player
+    """
     def __init__(self, name, room_name, socketId):
         self.user_name = name
         self.room_name = room_name
@@ -6,7 +9,7 @@ class User():
         self.user_score = 0
         self.word_list = []
         self.filtered_list = []
-        self.round_score = 0 # Created round_score to be added to overall score then 0ed again
+        self.round_score = 0
 
     def get_user_name(self):
         return self.user_name
