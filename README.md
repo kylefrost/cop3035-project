@@ -1,6 +1,7 @@
 <h1 align="center">Woggle</h1>
 <p align="center">A Florida State University COP 3035 Project<br>
 By Kathryn Crotty, Kyle Frost, Alex Keeney, and Jessica Kent</p>
+<p align="center"><i><b>Won "Best Project" in Class</b></i></p>
 
 # Prerequisites
   - Python 3.6+ and Pip
